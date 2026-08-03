@@ -10,11 +10,25 @@ and can flag the custom domain as misconfigured / risk domain takeover).
   **TXT** record it gives you to Cloudflare DNS → click Verify.
 - Safe to keep the proxy on (grey-cloud not required for verification).
 
-## Public downloads (currently broken)
-The Download section links to `github.com/okoker/penkeep/releases`, which is now a **private**
-repo → 404 for visitors, and the app binaries aren't publicly downloadable. Fix:
-- Publish release binaries to **`penkeep_website`** releases (or **Cloudflare R2**), and
-- Repoint the site's download buttons + the release-API fetch in `index.html` accordingly.
+## Public reference docs (5 links still 404)
+`okoker/penkeep` stays **private** by decision, so every site link pointing into it dead-ends for
+visitors. The download links are fixed (binaries now mirror to `penkeep_website` releases); these
+five still need a public target, and each wants a document written for an outside reader — not a
+copy-paste of the private repo's internal docs:
+- **Threat model** — footer *Threat model*, and the Security section's
+  *"Read exactly what Phase 1 protects →"*. Needs the real scope: what the `.emd` format protects
+  (XChaCha20-Poly1305 + Argon2id + zstd, per-file passphrases, no master key) and what it does
+  **not** — the decrypted-plaintext-in-memory residue limits the site already claims are published,
+  plus unsigned/un-notarized builds. The site's own copy says *"we don't oversell it"*, so this
+  page is load-bearing for that claim.
+- **CLI docs** — footer *CLI docs*. `crates/emd-cli` exists and is the second consumer of the
+  format; document the commands and the file format enough for someone to decrypt their own `.emd`
+  without the app. This is the strongest answer to "what if penkeep disappears".
+- **Bare *GitHub* links** — nav and footer. There is no public source repo to point at, so either
+  drop them, or point them at whatever public doc repo the two items above land in.
+
+Decide the venue first: a `docs/` tree in `penkeep_website` (simplest, renders on Pages) vs. a
+separate public repo. Everything above follows from that choice.
 
 ## OG social image
 No `og.png` yet — `index.html` references `https://penkeep.com/og.png` for OG/Twitter cards,

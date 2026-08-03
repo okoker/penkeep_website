@@ -227,6 +227,9 @@ section{padding:96px 0;position:relative}
 .os:hover{border-color:var(--acid-dim);transform:translateY(-2px)}
 .os .n{font-family:var(--mono);font-size:15px;margin:8px 0 2px}
 .os .d{font-family:var(--code);font-size:11px;color:var(--dim)}
+.os .d a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:.15s}
+.os .d a:hover{color:var(--acid);border-bottom-color:var(--acid-dim)}
+a.os,.os a{cursor:pointer}
 .os.primary{border-color:var(--acid-dim);background:rgba(84,240,168,.06)}
 .os.soon{opacity:.55}
 .os.soon .d{color:var(--amber)}
@@ -513,12 +516,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:40px}
       <div class="eyebrow" style="text-align:center">Download</div>
       <h2 style="margin-top:12px">Start writing in the clear. Lock what matters.</h2>
       <div class="os-row" id="osRow">
-        <a class="os primary" data-os="mac" href="https://github.com/okoker/penkeep/releases"><span class="youbadge">your OS</span><div style="font-size:22px">🍎</div><div class="n">macOS</div><div class="d">Apple Silicon + Intel · .dmg</div></a>
-        <a class="os" data-os="linux" href="https://github.com/okoker/penkeep/releases"><span class="youbadge">your OS</span><div style="font-size:22px">🐧</div><div class="n">Linux</div><div class="d">.deb · .AppImage · .rpm</div></a>
-        <a class="os" data-os="win" href="https://github.com/okoker/penkeep/releases"><span class="youbadge">your OS</span><div style="font-size:22px">⊞</div><div class="n">Windows</div><div class="d">.exe · .msi</div></a>
+        <div class="os primary" data-os="mac"><span class="youbadge">your OS</span><div style="font-size:22px">🍎</div><div class="n">macOS</div><div class="d"><a data-dl="mac-arm" href="https://github.com/okoker/penkeep_website/releases/latest">Apple&nbsp;Silicon</a> · <a data-dl="mac-intel" href="https://github.com/okoker/penkeep_website/releases/latest">Intel</a></div></div>
+        <div class="os" data-os="linux"><span class="youbadge">your OS</span><div style="font-size:22px">🐧</div><div class="n">Linux</div><div class="d"><a data-dl="linux-deb" href="https://github.com/okoker/penkeep_website/releases/latest">.deb</a> · <a data-dl="linux-appimage" href="https://github.com/okoker/penkeep_website/releases/latest">.AppImage</a> · <a data-dl="linux-rpm" href="https://github.com/okoker/penkeep_website/releases/latest">.rpm</a></div></div>
+        <div class="os" data-os="win"><span class="youbadge">your OS</span><div style="font-size:22px">⊞</div><div class="n">Windows</div><div class="d"><a data-dl="win-exe" href="https://github.com/okoker/penkeep_website/releases/latest">.exe</a> · <a data-dl="win-msi" href="https://github.com/okoker/penkeep_website/releases/latest">.msi</a></div></div>
         <div class="os soon"><div style="font-size:22px">📱</div><div class="n">iOS</div><div class="d">Q4 2026</div></div>
       </div>
-      <p class="hero-meta" style="margin-top:24px" id="relMeta">Free to try · MIT-licensed core · <a href="https://github.com/okoker/penkeep/releases" style="color:var(--acid)">all releases &amp; checksums</a></p>
+      <p class="hero-meta" style="margin-top:24px" id="relMeta">Free to try · MIT-licensed core · <a href="https://github.com/okoker/penkeep_website/releases" style="color:var(--acid)">all releases &amp; checksums</a></p>
     </div>
   </section>
 </div>
@@ -534,7 +537,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:40px}
         <p>Local-first markdown with comments and per-file encryption. The only end is you.</p>
       </div>
       <div class="foot-col"><h5>Product</h5><a href="#features">Features</a><a href="#security">Security</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#download">Download</a></div>
-      <div class="foot-col"><h5>Resources</h5><a href="https://github.com/okoker/penkeep">GitHub</a><a href="https://github.com/okoker/penkeep/releases">Releases</a><a href="https://github.com/okoker/penkeep">Threat model</a><a href="https://github.com/okoker/penkeep">CLI docs</a></div>
+      <div class="foot-col"><h5>Resources</h5><a href="https://github.com/okoker/penkeep">GitHub</a><a href="https://github.com/okoker/penkeep_website/releases">Releases</a><a href="https://github.com/okoker/penkeep">Threat model</a><a href="https://github.com/okoker/penkeep">CLI docs</a></div>
       <div class="foot-col"><h5>Platforms</h5><a href="#download">macOS</a><a href="#download">Linux</a><a href="#download">Windows</a><a href="#download">iOS · Q4 2026</a></div>
     </div>
     <div class="foot-bottom">
@@ -570,11 +573,18 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
 
 // Pull real download links from the latest GitHub release; degrade gracefully to the releases page.
 (function(){
-  const REPO='okoker/penkeep';
+  // Binaries are published as release assets on the public site repo; the app repo is private.
+  const REPO='okoker/penkeep_website';
+  // One entry per advertised artifact — never a broad match, or an Intel Mac gets served
+  // the aarch64 build (whichever asset happened to sort first).
   const map=[
-    {os:'mac',   match:n=>/\.dmg$/i.test(n)},
-    {os:'linux', match:n=>/\.(appimage|deb|rpm)$/i.test(n)},
-    {os:'win',   match:n=>/\.(exe|msi)$/i.test(n)}
+    {key:'mac-arm',       match:n=>/aarch64\.dmg$/i.test(n)},
+    {key:'mac-intel',     match:n=>/x64\.dmg$/i.test(n)},
+    {key:'linux-deb',     match:n=>/\.deb$/i.test(n)},
+    {key:'linux-appimage',match:n=>/\.AppImage$/i.test(n)},
+    {key:'linux-rpm',     match:n=>/\.rpm$/i.test(n)},
+    {key:'win-exe',       match:n=>/\.exe$/i.test(n)},
+    {key:'win-msi',       match:n=>/\.msi$/i.test(n)}
   ];
   fetch('https://api.github.com/repos/'+REPO+'/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
     .then(r=>r.ok?r.json():Promise.reject(r.status))
@@ -582,8 +592,8 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
       const assets=rel.assets||[];
       map.forEach(m=>{
         const a=assets.find(x=>m.match(x.name));
-        const card=document.querySelector('.os[data-os="'+m.os+'"]');
-        if(a&&card)card.setAttribute('href',a.browser_download_url);
+        const link=document.querySelector('[data-dl="'+m.key+'"]');
+        if(a&&link){link.setAttribute('href',a.browser_download_url);link.setAttribute('title',a.name);}
       });
       const meta=document.getElementById('relMeta');
       if(meta&&rel.tag_name)meta.innerHTML='Latest: <span style="color:var(--acid)">'+rel.tag_name+'</span> · Free to try · MIT-licensed core · <a href="https://github.com/'+REPO+'/releases" style="color:var(--acid)">all releases &amp; checksums</a>';
