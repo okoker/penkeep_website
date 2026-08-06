@@ -12,7 +12,7 @@ and can flag the custom domain as misconfigured / risk domain takeover).
 
 ## Public reference docs (5 links still 404)
 `okoker/penkeep` stays **private** by decision, so every site link pointing into it dead-ends for
-visitors. The download links are fixed (binaries now mirror to `penkeep_website` releases); these
+visitors. The download links are fixed (binaries are static files under `download/<tag>/`); these
 five still need a public target, and each wants a document written for an outside reader — not a
 copy-paste of the private repo's internal docs:
 - **Threat model** — footer *Threat model*, and the Security section's
