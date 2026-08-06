@@ -68,10 +68,9 @@ td.h{font-family:var(--code);font-size:11px;color:var(--dim);word-break:break-al
 .notes{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
 .notes-h{font-family:var(--code);font-size:11px;text-transform:uppercase;letter-spacing:.1em;
   color:var(--dim);margin-bottom:14px}
-.notes h3{font-size:13px;font-weight:600;color:var(--dim);margin:16px 0 6px;letter-spacing:.02em}
-.notes p{color:var(--muted);font-size:14.5px;margin-bottom:10px;max-width:74ch}
+.notes p{color:var(--muted);font-size:14.5px;margin-bottom:12px;max-width:74ch}
 .notes ul{margin:0 0 4px 18px}
-.notes li{color:var(--muted);font-size:14.5px;margin-bottom:5px;max-width:74ch}
+.notes li{color:var(--muted);font-size:14.5px;margin-bottom:8px;max-width:74ch}
 .notes li::marker{color:var(--dim)}
 .notes strong{color:var(--ink);font-weight:600}
 .notes em{font-style:italic}
@@ -159,7 +158,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
       <p>This patch makes Penkeep behave properly when you have <strong>several folders open at
         once</strong>, and clears a batch of sharp edges.</p>
 
-      <h3>Multiple folders</h3>
       <ul>
         <li><strong>Search covers every open folder.</strong> Cmd+K used to search only the "active"
           folder and said nothing about the rest. Now every open folder is searched, results name the
@@ -168,10 +166,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
           <code>[[link]]</code> resolves inside the note's own folder first and only then looks at the
           other open folders; the <code>[[</code> autocomplete lists files from all of them, own
           folder first.</li>
-      </ul>
-
-      <h3>Changed</h3>
-      <ul>
         <li><strong>Deleting from the sidebar is harder to do by accident.</strong> Delete now requires
           Cmd+Backspace (Ctrl elsewhere), and the confirmation says plainly that the delete is
           permanent and skips the Trash.</li>
@@ -179,14 +173,10 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
           names with dots and dates work; saving over an existing snippet warns first; renaming onto
           another snippet's name is refused instead of destroying it.</li>
         <li>Six more formatting buttons in the toolbar, and icon buttons that read as buttons again.</li>
-      </ul>
-
-      <h3>Fixed</h3>
-      <ul>
-        <li>New and empty documents opened pre-filled with welcome boilerplate, then autosaved it.</li>
-        <li>Plain-text paste pulled every line into its own paragraph.</li>
-        <li>A false "Failed to open file" error after bulk-deleting open files.</li>
-        <li>Backspace in the new-file name box offered to delete the selected file.</li>
+        <li><strong>Fixed:</strong> new and empty documents opening pre-filled with welcome
+          boilerplate (and autosaving it), plain-text paste pulling every line into its own paragraph,
+          a false "Failed to open file" error after bulk-deleting open files, and Backspace in the
+          new-file name box offering to delete the selected file.</li>
       </ul>
     </div>
   </section>
@@ -228,7 +218,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
             held for the session only; when it lapses the note locks again, and the file on disk is
             encrypted the whole time.</p>
 
-          <h3>Added</h3>
           <ul>
             <li><strong>Plain-text mode for <code>.txt</code> and <code>.sh</code>.</strong> They now
               open in a raw editing surface that preserves bytes and line breaks exactly. Previously
@@ -248,17 +237,9 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
             <li><strong>Root-header context menu</strong> — New File, New Folder, New from Template,
               Reveal in Finder, Set as Active Root, Close Folder, scoped to the root you
               right-clicked.</li>
-          </ul>
-
-          <h3>Changed</h3>
-          <ul>
             <li><strong>Snippets panel redesigned around copying.</strong> Rows show titles; a single
               click expands a 3-line preview with a copy button; new snippets are created in an inline
               form.</li>
-          </ul>
-
-          <h3>Fixed</h3>
-          <ul>
             <li><strong>Exporting to HTML deleted parts of your document.</strong> Any note containing
               a word merely starting with "on" — <em>only, once, one, online, onto</em> — followed by a
               link or image came out mangled: "I only agree" with an image below it exported as just
@@ -277,17 +258,11 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
               line break before an inline code span.</li>
             <li>Frontmatter lost the blank line after its closing <code>---</code>; image titles were
               dropped on save; wiki image embeds were corrupted in untitled documents.</li>
-          </ul>
-
-          <h3>Known limitations</h3>
-          <ul>
-            <li>Builds are unsigned and un-notarized on every platform.</li>
-            <li><strong>Touch ID ships disabled.</strong> The Keychain retrieval gate is implemented,
-              but macOS rejects the biometric Keychain ACL on an unsigned binary. It turns on once
-              signing lands.</li>
-            <li>The encryption orphan-finder and the in-app Help tab are not built yet; the
-              orphan-finder's button is visible but disabled.</li>
-            <li>The app icon is still a placeholder.</li>
+            <li><strong>Known limitations:</strong> builds are unsigned and un-notarized on every
+              platform; Touch ID ships disabled because macOS rejects the biometric Keychain ACL on an
+              unsigned binary (it turns on once signing lands); the encryption orphan-finder and the
+              in-app Help tab are not built yet, and the orphan-finder's button is visible but
+              disabled; the app icon is still a placeholder.</li>
           </ul>
         </div>
       </div>
