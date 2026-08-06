@@ -1,0 +1,5 @@
+# This repo is PUBLIC and is the live penkeep.com. Nothing lands here by accident.
+.DS_Store
+
+# Local demo notes used to shoot the screenshots — not site content.
+demoTXT/

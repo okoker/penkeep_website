@@ -519,12 +519,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:40px}
       <div class="eyebrow" style="text-align:center">Download</div>
       <h2 style="margin-top:12px">Start writing in the clear. Lock what matters.</h2>
       <div class="os-row" id="osRow">
-        <div class="os primary" data-os="mac"><span class="youbadge">your OS</span><div style="font-size:22px">🍎</div><div class="n">macOS</div><div class="d"><a data-dl="mac-arm" href="https://github.com/okoker/penkeep_website/releases/latest">Apple&nbsp;Silicon</a> · <a data-dl="mac-intel" href="https://github.com/okoker/penkeep_website/releases/latest">Intel</a></div></div>
-        <div class="os" data-os="linux"><span class="youbadge">your OS</span><div style="font-size:22px">🐧</div><div class="n">Linux</div><div class="d"><a data-dl="linux-deb" href="https://github.com/okoker/penkeep_website/releases/latest">.deb</a> · <a data-dl="linux-appimage" href="https://github.com/okoker/penkeep_website/releases/latest">.AppImage</a> · <a data-dl="linux-rpm" href="https://github.com/okoker/penkeep_website/releases/latest">.rpm</a></div></div>
-        <div class="os" data-os="win"><span class="youbadge">your OS</span><div style="font-size:22px">⊞</div><div class="n">Windows</div><div class="d"><a data-dl="win-exe" href="https://github.com/okoker/penkeep_website/releases/latest">.exe</a> · <a data-dl="win-msi" href="https://github.com/okoker/penkeep_website/releases/latest">.msi</a></div></div>
+        <div class="os primary" data-os="mac"><span class="youbadge">your OS</span><div style="font-size:22px">🍎</div><div class="n">macOS</div><div class="d"><a data-dl="mac-arm" href="/releases.html">Apple&nbsp;Silicon</a> · <a data-dl="mac-intel" href="/releases.html">Intel</a></div></div>
+        <div class="os" data-os="linux"><span class="youbadge">your OS</span><div style="font-size:22px">🐧</div><div class="n">Linux</div><div class="d"><a data-dl="linux-deb" href="/releases.html">.deb</a> · <a data-dl="linux-appimage" href="/releases.html">.AppImage</a> · <a data-dl="linux-rpm" href="/releases.html">.rpm</a></div></div>
+        <div class="os" data-os="win"><span class="youbadge">your OS</span><div style="font-size:22px">⊞</div><div class="n">Windows</div><div class="d"><a data-dl="win-exe" href="/releases.html">.exe</a> · <a data-dl="win-msi" href="/releases.html">.msi</a></div></div>
         <div class="os soon"><div style="font-size:22px">📱</div><div class="n">iOS</div><div class="d">Q4 2026</div></div>
       </div>
-      <p class="hero-meta" style="margin-top:24px" id="relMeta">Free to try · MIT-licensed core · <a href="https://github.com/okoker/penkeep_website/releases" style="color:var(--acid)">all releases &amp; checksums</a></p>
+      <p class="hero-meta" style="margin-top:24px" id="relMeta">Free to try · MIT-licensed core · <a href="/releases.html" style="color:var(--acid)">all releases &amp; checksums</a></p>
     </div>
   </section>
 </div>
@@ -540,7 +540,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:40px}
         <p>Local-first markdown with comments and per-file encryption. The only end is you.</p>
       </div>
       <div class="foot-col"><h5>Product</h5><a href="#features">Features</a><a href="#security">Security</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#download">Download</a></div>
-      <div class="foot-col"><h5>Resources</h5><a href="https://github.com/okoker/penkeep">GitHub</a><a href="https://github.com/okoker/penkeep_website/releases">Releases</a><a href="https://github.com/okoker/penkeep">Threat model</a><a href="https://github.com/okoker/penkeep">CLI docs</a></div>
+      <div class="foot-col"><h5>Resources</h5><a href="https://github.com/okoker/penkeep">GitHub</a><a href="/releases.html">Releases</a><a href="https://github.com/okoker/penkeep">Threat model</a><a href="https://github.com/okoker/penkeep">CLI docs</a></div>
       <div class="foot-col"><h5>Platforms</h5><a href="#download">macOS</a><a href="#download">Linux</a><a href="#download">Windows</a><a href="#download">iOS · Q4 2026</a></div>
     </div>
     <div class="foot-bottom">
@@ -574,10 +574,11 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
   const cta=document.querySelector('.hero .btn-primary'); if(cta&&label)cta.textContent='↓ Download for '+label;
 })();
 
-// Pull real download links from the latest GitHub release; degrade gracefully to the releases page.
+// Point the download links at the latest build; degrade gracefully to the releases page.
 (function(){
-  // Binaries are published as release assets on the public site repo; the app repo is private.
-  const REPO='okoker/penkeep_website';
+  // Binaries are plain static files on this site under /download/<tag>/, NOT GitHub release
+  // assets: GitHub attaches "Source code" archives to every release and gives no way to
+  // suppress them, and Penkeep is not open source. Do not reintroduce a GitHub release here.
   // One entry per advertised artifact — never a broad match, or an Intel Mac gets served
   // the aarch64 build (whichever asset happened to sort first).
   const map=[
@@ -589,22 +590,22 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
     {key:'win-exe',       match:n=>/\.exe$/i.test(n)},
     {key:'win-msi',       match:n=>/\.msi$/i.test(n)}
   ];
-  fetch('https://api.github.com/repos/'+REPO+'/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
+  // /download/releases.json is the source of truth for what is published — see releases.html.
+  fetch('/download/releases.json',{cache:'no-cache'})
     .then(r=>r.ok?r.json():Promise.reject(r.status))
-    .then(rel=>{
-      const assets=rel.assets||[];
+    .then(idx=>{
+      const rels=idx.releases||[];
+      const rel=rels.find(x=>x.tag===idx.latest)||rels[0];
+      if(!rel)return;
       map.forEach(m=>{
-        const a=assets.find(x=>m.match(x.name));
+        const a=(rel.assets||[]).find(n=>m.match(n));
         const link=document.querySelector('[data-dl="'+m.key+'"]');
-        // Branded URL: a Cloudflare Redirect Rule ("branded downloads", wildcard
-        // penkeep.com/download/* → github releases/download/${1}) serves these.
-        // Delete that rule and every download 404s — the rule is load-bearing.
-        if(a&&link){link.setAttribute('href','https://penkeep.com/download/'+rel.tag_name+'/'+encodeURIComponent(a.name));link.setAttribute('title',a.name);}
+        if(a&&link){link.setAttribute('href','/download/'+rel.tag+'/'+encodeURIComponent(a));link.setAttribute('title',a);}
       });
       const meta=document.getElementById('relMeta');
-      if(meta&&rel.tag_name)meta.innerHTML='Latest: <span style="color:var(--acid)">'+rel.tag_name+'</span> · Free to try · MIT-licensed core · <a href="https://github.com/'+REPO+'/releases" style="color:var(--acid)">all releases &amp; checksums</a>';
+      if(meta&&rel.tag)meta.innerHTML='Latest: <span style="color:var(--acid)">'+rel.tag+'</span> · Free to try · MIT-licensed core · <a href="/releases.html" style="color:var(--acid)">all releases &amp; checksums</a>';
     })
-    .catch(()=>{/* keep static links to the releases page */});
+    .catch(()=>{/* static hrefs already point at /releases.html */});
 })();
 </script>
 <script>
