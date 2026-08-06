@@ -44,13 +44,31 @@ h1{font-family:var(--mono);font-weight:700;font-size:clamp(26px,4vw,36px);letter
 
 /* one release */
 .rel{padding:34px 0;border-bottom:1px solid var(--line)}
-.rel-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.rel-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
 .rel-v{font-family:var(--mono);font-weight:700;font-size:19px}
 .rel-t{color:var(--muted);font-size:14px}
 .rel-d{margin-left:auto;font-family:var(--code);font-size:12px;color:var(--dim)}
 
+/* downloads + hashes — the reason people open this page, so they lead and they are big */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-family:var(--code);font-weight:400;font-size:11px;text-transform:uppercase;
+   letter-spacing:.1em;color:var(--dim);padding:0 16px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 16px 11px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+tr:last-child td{border-bottom:none}
+td.f a{font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap;border-bottom:1px solid transparent}
+td.f a:hover{color:var(--acid);border-bottom-color:var(--acid-dim)}
+td.f .ext{font-family:var(--code);font-size:12.5px;font-weight:400;color:var(--dim);margin-left:8px}
+td.h{font-family:var(--code);font-size:11px;color:var(--dim);word-break:break-all;line-height:1.5}
+.sums{margin-top:14px;font-size:12.5px;color:var(--dim);font-family:var(--code)}
+.sums a{color:var(--muted);border-bottom:1px solid var(--line)}
+.sums a:hover{color:var(--ink)}
+
+/* notes sit under the downloads */
+.notes{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.notes-h{font-family:var(--code);font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);margin-bottom:14px}
 .notes h3{font-size:13px;font-weight:600;color:var(--dim);margin:16px 0 6px;letter-spacing:.02em}
-.notes h3:first-child{margin-top:0}
 .notes p{color:var(--muted);font-size:14.5px;margin-bottom:10px;max-width:74ch}
 .notes ul{margin:0 0 4px 18px}
 .notes li{color:var(--muted);font-size:14.5px;margin-bottom:5px;max-width:74ch}
@@ -58,21 +76,6 @@ h1{font-family:var(--mono);font-weight:700;font-size:clamp(26px,4vw,36px);letter
 .notes strong{color:var(--ink);font-weight:600}
 .notes em{font-style:italic}
 .notes code{font-family:var(--code);font-size:.88em;color:var(--ink)}
-
-/* downloads + hashes */
-.tw{overflow-x:auto;margin-top:20px}
-table{border-collapse:collapse;width:100%;font-size:13px}
-th{text-align:left;font-family:var(--code);font-weight:400;font-size:11px;text-transform:uppercase;
-   letter-spacing:.1em;color:var(--dim);padding:0 14px 7px 0;border-bottom:1px solid var(--line);white-space:nowrap}
-td{padding:7px 14px 7px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
-tr:last-child td{border-bottom:none}
-td.f a{color:var(--ink);border-bottom:1px solid var(--line);white-space:nowrap}
-td.f a:hover{border-bottom-color:var(--acid-dim)}
-td.f .ext{font-family:var(--code);font-size:11.5px;color:var(--dim);margin-left:6px}
-td.h{font-family:var(--code);font-size:11px;color:var(--dim);word-break:break-all;line-height:1.5}
-.sums{margin-top:12px;font-size:12.5px;color:var(--dim);font-family:var(--code)}
-.sums a{color:var(--muted);border-bottom:1px solid var(--line)}
-.sums a:hover{color:var(--ink)}
 
 /* older versions, collapsed */
 .prev{padding:30px 0 10px}
@@ -83,7 +86,7 @@ summary::-webkit-details-marker{display:none}
 summary::before{content:"+";font-family:var(--code);color:var(--dim);width:12px;flex:none}
 details[open] summary::before{content:"–"}
 summary:hover .rel-v{color:var(--acid)}
-details .body{padding:2px 0 26px 24px}
+details .body{padding:6px 0 26px 24px}
 
 .foot-note{color:var(--dim);font-size:13px;margin:26px 0 56px}
 footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 30px}
@@ -94,6 +97,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
 @media(max-width:820px){
   .nav-links{display:none}
   .rel-d{margin-left:0;width:100%}
+  td.f a{font-size:15px}
   td.h{font-size:10px}
   details .body{padding-left:0}
 }
@@ -134,7 +138,24 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
       <span class="rel-d">06/08/2026 · latest</span>
     </div>
 
+    <div class="tw">
+      <table>
+        <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
+        <tbody>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">12c86bff49cf79bdd6330a2c3c3d42969a0b8dca9cd440d34ac0f257dfa7604a</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">b70e1538681973440f822b75c0c74b6a6fb1fc8ca4b62cbb1751c44aea61b8ba</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">2143b9f69386d0b5536e32a459fd8d94fed0010b299592bde148a2a590dcdf85</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">d25733c9fc90d06960aff3a3e034f5b9c0960d4437e8e40800edff0e59c1280e</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">7650ab3924200004bcce01b56283b866fea4926da83d52f401b1637275a2f1b9</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">4c4ea0992b75ae3a8c93696f624cc51159e735aa16414eb0dbb938baaded136e</td></tr>
+          <tr><td class="f"><a href="/download/v1.1.1/Penkeep-1.1.1-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">c27c5ed1c5f2a42e9d1a0e66b7e1811833292d725f826e38766e5ea2dba3d222</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sums"><a href="/download/v1.1.1/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
+
     <div class="notes">
+      <div class="notes-h">What's new</div>
       <p>This patch makes Penkeep behave properly when you have <strong>several folders open at
         once</strong>, and clears a batch of sharp edges.</p>
 
@@ -168,22 +189,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
         <li>Backspace in the new-file name box offered to delete the selected file.</li>
       </ul>
     </div>
-
-    <div class="tw">
-      <table>
-        <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
-        <tbody>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">12c86bff49cf79bdd6330a2c3c3d42969a0b8dca9cd440d34ac0f257dfa7604a</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">b70e1538681973440f822b75c0c74b6a6fb1fc8ca4b62cbb1751c44aea61b8ba</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">2143b9f69386d0b5536e32a459fd8d94fed0010b299592bde148a2a590dcdf85</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">d25733c9fc90d06960aff3a3e034f5b9c0960d4437e8e40800edff0e59c1280e</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">7650ab3924200004bcce01b56283b866fea4926da83d52f401b1637275a2f1b9</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep_1.1.1_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">4c4ea0992b75ae3a8c93696f624cc51159e735aa16414eb0dbb938baaded136e</td></tr>
-          <tr><td class="f"><a href="/download/v1.1.1/Penkeep-1.1.1-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">c27c5ed1c5f2a42e9d1a0e66b7e1811833292d725f826e38766e5ea2dba3d222</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="sums"><a href="/download/v1.1.1/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
   </section>
 
   <!-- ============================== older ============================== -->
@@ -197,7 +202,24 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
         <span class="rel-d">03/08/2026</span>
       </summary>
       <div class="body">
+        <div class="tw">
+          <table>
+            <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
+            <tbody>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">908a6a2e6f875e20af7ed06d4e432f95802bc4600754c8d7e40afb2e00f91d98</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">46cc1144f8f4a13d820167fdba4d9c575744cb4de3cbef4d791d09a149708f42</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">44561c31c5bbb79f2ede68bf994d872824a0a67bd2b07a44e9bb01603dd65b42</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">f54d66996b7ca14e834d481930fade8072efcada58fb29f470a9109a20cb3eef</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">75c43b579721cfcefd90ffc3b13fdc6f02e7996bd60213338520e8d64dbe5adc</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">70213dd565bd891d070fd5b2a1e37385ea3b9b7168e933b3ac0f6240b997c6db</td></tr>
+              <tr><td class="f"><a href="/download/v1.1.0/Penkeep-1.1.0-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">252ecd64af50334f8d077848d20841df6c76f8736f96577f2c5f6e8259df8c0e</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sums"><a href="/download/v1.1.0/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
+
         <div class="notes">
+          <div class="notes-h">What was new</div>
           <p>The headline of this release is <strong>end-to-end encryption</strong>. A note can be
             encrypted with a passphrase of your own and is stored as <code>.emd</code>:
             XChaCha20-Poly1305 for the content, Argon2id to derive the key, zstd to compress before
@@ -268,22 +290,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
             <li>The app icon is still a placeholder.</li>
           </ul>
         </div>
-
-        <div class="tw">
-          <table>
-            <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
-            <tbody>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">908a6a2e6f875e20af7ed06d4e432f95802bc4600754c8d7e40afb2e00f91d98</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">46cc1144f8f4a13d820167fdba4d9c575744cb4de3cbef4d791d09a149708f42</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">44561c31c5bbb79f2ede68bf994d872824a0a67bd2b07a44e9bb01603dd65b42</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">f54d66996b7ca14e834d481930fade8072efcada58fb29f470a9109a20cb3eef</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">75c43b579721cfcefd90ffc3b13fdc6f02e7996bd60213338520e8d64dbe5adc</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep_1.1.0_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">70213dd565bd891d070fd5b2a1e37385ea3b9b7168e933b3ac0f6240b997c6db</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.0/Penkeep-1.1.0-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">252ecd64af50334f8d077848d20841df6c76f8736f96577f2c5f6e8259df8c0e</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="sums"><a href="/download/v1.1.0/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
       </div>
     </details>
   </div>
