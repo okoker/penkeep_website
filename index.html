@@ -596,7 +596,10 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
       map.forEach(m=>{
         const a=assets.find(x=>m.match(x.name));
         const link=document.querySelector('[data-dl="'+m.key+'"]');
-        if(a&&link){link.setAttribute('href',a.browser_download_url);link.setAttribute('title',a.name);}
+        // Branded URL: a Cloudflare Redirect Rule ("branded downloads", wildcard
+        // penkeep.com/download/* → github releases/download/${1}) serves these.
+        // Delete that rule and every download 404s — the rule is load-bearing.
+        if(a&&link){link.setAttribute('href','https://penkeep.com/download/'+rel.tag_name+'/'+encodeURIComponent(a.name));link.setAttribute('title',a.name);}
       });
       const meta=document.getElementById('relMeta');
       if(meta&&rel.tag_name)meta.innerHTML='Latest: <span style="color:var(--acid)">'+rel.tag_name+'</span> · Free to try · MIT-licensed core · <a href="https://github.com/'+REPO+'/releases" style="color:var(--acid)">all releases &amp; checksums</a>';
