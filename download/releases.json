@@ -1,7 +1,23 @@
 {
   "_comment": "Source of truth for the download links on index.html. Binaries are plain static files under /download/<tag>/ — there are no GitHub releases on this repo by decision (GitHub attaches un-suppressable 'Source code' archives to every release). Retention: the last 3 versions; delete the oldest folder when adding a new one. Update this file AND releases.html on every release — see releasing.md step 12 in the private repo.",
-  "latest": "v1.1.5",
+  "latest": "v1.1.6",
   "releases": [
+    {
+      "tag": "v1.1.6",
+      "version": "1.1.6",
+      "date": "2026-08-17",
+      "title": "the way back out of encryption",
+      "assets": [
+        "Penkeep_1.1.6_aarch64.dmg",
+        "Penkeep_1.1.6_x64.dmg",
+        "Penkeep_1.1.6_x64-setup.exe",
+        "Penkeep_1.1.6_x64_en-US.msi",
+        "Penkeep_1.1.6_amd64.deb",
+        "Penkeep_1.1.6_amd64.AppImage",
+        "Penkeep-1.1.6-1.x86_64.rpm",
+        "SHA256SUMS.txt"
+      ]
+    },
     {
       "tag": "v1.1.5",
       "version": "1.1.5",
@@ -31,22 +47,6 @@
         "Penkeep_1.1.1_amd64.deb",
         "Penkeep_1.1.1_amd64.AppImage",
         "Penkeep-1.1.1-1.x86_64.rpm",
-        "SHA256SUMS.txt"
-      ]
-    },
-    {
-      "tag": "v1.1.0",
-      "version": "1.1.0",
-      "date": "2026-08-03",
-      "title": "encryption-first storage",
-      "assets": [
-        "Penkeep_1.1.0_aarch64.dmg",
-        "Penkeep_1.1.0_x64.dmg",
-        "Penkeep_1.1.0_x64-setup.exe",
-        "Penkeep_1.1.0_x64_en-US.msi",
-        "Penkeep_1.1.0_amd64.deb",
-        "Penkeep_1.1.0_amd64.AppImage",
-        "Penkeep-1.1.0-1.x86_64.rpm",
         "SHA256SUMS.txt"
       ]
     }
