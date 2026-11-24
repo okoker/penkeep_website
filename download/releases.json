@@ -1,7 +1,21 @@
 {
-  "_comment": "Source of truth for the download links on index.html. Binaries are plain static files under /download/<tag>/ — there are no GitHub releases on this repo by decision (GitHub attaches un-suppressable 'Source code' archives to every release). Retention: the last 3 versions; delete the oldest folder when adding a new one. Update this file AND releases.html on every release — see releasing.md step 12 in the private repo.",
-  "latest": "v1.2.0",
+  "_comment": "Source of truth for the download links on index.html. Binaries are plain static files under /download/<tag>/ — there are no GitHub releases on this repo by decision (GitHub attaches un-suppressable 'Source code' archives to every release). Retention: the last 3 versions, plus the newest one with a Windows build (v1.3.0 shipped none, so index.html's Windows buttons take the newest release that has the file); delete the oldest folder when adding a new one. Update this file AND releases.html on every release — see releasing.md step 12 in the private repo.",
+  "latest": "v1.3.0",
   "releases": [
+    {
+      "tag": "v1.3.0",
+      "version": "1.3.0",
+      "date": "2026-11-24",
+      "title": "each note keeps its own work",
+      "assets": [
+        "Penkeep_1.3.0_aarch64.dmg",
+        "Penkeep_1.3.0_x64.dmg",
+        "Penkeep_1.3.0_amd64.deb",
+        "Penkeep_1.3.0_amd64.AppImage",
+        "Penkeep-1.3.0-1.x86_64.rpm",
+        "SHA256SUMS.txt"
+      ]
+    },
     {
       "tag": "v1.2.0",
       "version": "1.2.0",
@@ -31,22 +45,6 @@
         "Penkeep_1.1.6_amd64.deb",
         "Penkeep_1.1.6_amd64.AppImage",
         "Penkeep-1.1.6-1.x86_64.rpm",
-        "SHA256SUMS.txt"
-      ]
-    },
-    {
-      "tag": "v1.1.5",
-      "version": "1.1.5",
-      "date": "2026-08-08",
-      "title": "ten themes to write in",
-      "assets": [
-        "Penkeep_1.1.5_aarch64.dmg",
-        "Penkeep_1.1.5_x64.dmg",
-        "Penkeep_1.1.5_x64-setup.exe",
-        "Penkeep_1.1.5_x64_en-US.msi",
-        "Penkeep_1.1.5_amd64.deb",
-        "Penkeep_1.1.5_amd64.AppImage",
-        "Penkeep-1.1.5-1.x86_64.rpm",
         "SHA256SUMS.txt"
       ]
     }

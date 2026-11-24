@@ -123,65 +123,71 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
 <div class="wrap">
   <div class="page-head">
     <h1>Releases</h1>
-    <p class="lede">Every build, its SHA-256, and what changed. Builds are not code-signed, so the
+    <p class="lede">Every build, its SHA-256, and what changed. macOS builds are
+      signed and notarized by Apple; Linux and Windows builds are not, so the
       checksum is your integrity check — compare it after downloading, or run
       <code>shasum -a 256 -c SHA256SUMS.txt --ignore-missing</code> against the file listed under
       each release.</p>
   </div>
 
   <!-- ============================== latest ============================== -->
-  <section class="rel" id="v1.2.0">
+  <section class="rel" id="v1.3.0">
     <div class="rel-h">
-      <span class="rel-v">v1.2.0</span>
-      <span class="rel-t">signed, notarized, and Touch ID works</span>
-      <span class="rel-d">24/08/2026 · latest</span>
+      <span class="rel-v">v1.3.0</span>
+      <span class="rel-t">each note keeps its own work</span>
+      <span class="rel-d">24/11/2026 · latest</span>
     </div>
 
     <div class="tw">
       <table>
         <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
         <tbody>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">dbd5b715c5f94f2d909b8a385c20e8701df026dfd713b2dd38960b15092b58aa</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">9cca26e8b5891a999757760f8be8af37ac15b8eb96843e8c22431505889d8021</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">a262a6be0fed891c1f9d53d0e63d9c9aa1d9aae37f540b5f95fded4a0891a98f</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">281623a4047c3b6b5b86a424f42ff17d4be71cea8b4d38bbf3d733677b774280</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">c4b9aa0a53436469342efe8c6e3b66c41977cf033b836a1063848f332e255b7a</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">cc64227ce40902bb44373456363af34499821b95627a713f5552106e50c12413</td></tr>
-          <tr><td class="f"><a href="/download/v1.2.0/Penkeep-1.2.0-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">e728eac5275882e7bcb98ac034b275171e170a22acdd45eef93dbad75c698102</td></tr>
+          <tr><td class="f"><a href="/download/v1.3.0/Penkeep_1.3.0_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">6626e6c9bdfd6e2ef8a821cde0772a6aba53bbae48f75f418db42417c56573d4</td></tr>
+          <tr><td class="f"><a href="/download/v1.3.0/Penkeep_1.3.0_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">84446b0df3dd3747c59bb1ec1bc949b07e3e597fd125a8d6a0e2861b9ce35fb0</td></tr>
+          <tr><td class="f"><a href="/download/v1.3.0/Penkeep_1.3.0_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">8472d8c54fdf44fc6dd718208fefcd10c627b4db93854788ca817dab2f6a3600</td></tr>
+          <tr><td class="f"><a href="/download/v1.3.0/Penkeep_1.3.0_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">4cdb593cb93cd967305ac6a4bebf17a9d26cfbd62b450c0d1126b5ebf0539efa</td></tr>
+          <tr><td class="f"><a href="/download/v1.3.0/Penkeep-1.3.0-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">d5f18a0f8bd7248ed5814b7584d5f57e57250278930f3be078bcedfe11abddae</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="sums"><a href="/download/v1.2.0/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
+    <div class="sums"><a href="/download/v1.3.0/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
 
     <div class="notes">
       <div class="notes-h">What's new</div>
-      <p>This is the first release macOS opens <strong>without the "unidentified developer"
-        warning</strong> — no right-clicking, no trip to System Settings. Penkeep is now signed with
-        an Apple Developer ID and notarized by Apple.</p>
+      <p><strong>macOS and Linux.</strong> Windows stays on <a href="#v1.2.0">v1.2.0</a> for now:
+        three Windows-only problems have to be fixed and checked on a Windows machine first.</p>
+
+      <p>Under the surface, Penkeep has been rebuilt so that <strong>every open note keeps its own
+        text and comments</strong>. Before, anything slow — reading a file, decrypting, saving, a
+        dialog — could finish into whichever note was on screen by then: an encrypted note
+        re-encrypted without its comments, one note's comments saved with another, a picture landing
+        in the wrong note. That whole family of bugs is gone.</p>
 
       <ul>
-        <li><strong>Touch ID unlocks your encrypted notes.</strong> The switch in Settings →
-          Encryption has been greyed out since the day it appeared, because macOS refuses to put
-          biometric protection on an application it cannot identify. Turn it on and opening an
-          encrypted note asks for your fingerprint instead of your passphrase. Apple Watch and your
-          Mac's password both work as fallbacks. A note you have already opened this session reopens
-          without asking again — Penkeep holds the passphrase for thirty minutes, and <em>Lock
-          Now</em> (⌘L) ends that whenever you want. The passphrase never leaves your Mac and is
-          never synced to iCloud. macOS only.</li>
-        <li><strong>macOS will ask once more for permission to read your folders.</strong> Being
-          signed makes this a new application identity, so the access you granted earlier builds does
-          not carry across. Allow it once and that is the end of it — future updates will not
-          re-ask. Nothing you have saved is affected.</li>
-        <li><strong>Decrypting a note no longer leaves its passphrase behind.</strong> Turning a note
-          back into plain text — or deleting it — used to leave the saved passphrase in your Keychain
-          indefinitely, filed under a note that no longer existed.</li>
-        <li><strong>A folder could disappear from the sidebar without you removing it.</strong> If
-          Penkeep could not open one at startup it quietly dropped it, permanently — and it could not
-          tell "deleted" apart from "macOS has not granted permission yet". The list now only shrinks
-          when you remove a folder yourself.</li>
-        <li><strong>Fixed:</strong> a file that could be dragged into a folder but never back out, a
-          wiki-link to an unreadable file offering to create it, buttons on plain text files that did
-          not apply to them, and an About dialog that now shows the version and links to penkeep.com.</li>
+        <li><strong>Comments made with 1.2.x are not shown.</strong> A note's comments now live in a
+          file named after the note's full name (<code>notes.md+.comments.json</code>), so they move,
+          rename and delete with it. Comments saved by 1.2.x are in the old-named file, which this
+          version does not read: the comments panel says <em>Your comments file is missing.</em> and
+          offers to clear the leftover highlights. The old file stays on disk, untouched.</li>
+        <li><strong>A change on disk combines with your unsaved edits.</strong> When another window,
+          a sync tool or an agent changes a note you are editing, and the two don't touch the same
+          paragraph, Penkeep takes both — comments included, encrypted notes too. A bar says so and
+          offers Keep, Undo, Compare… and Save Mine As…; nothing is saved until you answer.</li>
+        <li><strong>Encrypted notes save themselves</strong>, and tell you when they change on disk.
+          Comments added in another window show up at once.</li>
+        <li><strong>Locking is a pause.</strong> ⌘L locks at once and keeps your unsaved work; unlock
+          and everything is as you left it. An unlocked note locks itself after 10 idle minutes
+          instead of 30.</li>
+        <li><strong>A note comes back where you left it</strong> — scroll and cursor — after a tab
+          switch, an unlock, a reload or a rename.</li>
+        <li><strong>Keys follow the Mac's.</strong> ⌘W closes the tab and ⇧⌘W the window. Quick Open
+          is ⇧⌘O; ⌘P is kept for printing. ⌘G and ⇧⌘G find next and previous; ⌘H hides Penkeep.</li>
+        <li><strong>Faster:</strong> typing in a 5,000-line note keeps up with your keys, and big
+          folders and the backlinks panel open in a fraction of a second.</li>
+        <li><strong>Fixed:</strong> quitting from the Dock or by a restart losing unsaved notes, a
+          link to a file outside your folders granting access without asking, Remove Formatting
+          deleting comments, and Save as Template writing an encrypted note out unencrypted.
+          Underline (⌘U) is gone — markdown has none, and Penkeep's was lost on reopening.</li>
       </ul>
     </div>
   </section>
@@ -190,6 +196,64 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
   <!-- ============================== older ============================== -->
   <div class="prev">
     <h2>Previous versions</h2>
+
+    <details id="v1.2.0">
+      <summary>
+        <span class="rel-v">v1.2.0</span>
+        <span class="rel-t">signed, notarized, and Touch ID works</span>
+        <span class="rel-d">24/08/2026</span>
+      </summary>
+      <div class="body">
+
+        <div class="tw">
+          <table>
+            <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
+            <tbody>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">dbd5b715c5f94f2d909b8a385c20e8701df026dfd713b2dd38960b15092b58aa</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">9cca26e8b5891a999757760f8be8af37ac15b8eb96843e8c22431505889d8021</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">a262a6be0fed891c1f9d53d0e63d9c9aa1d9aae37f540b5f95fded4a0891a98f</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">281623a4047c3b6b5b86a424f42ff17d4be71cea8b4d38bbf3d733677b774280</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">c4b9aa0a53436469342efe8c6e3b66c41977cf033b836a1063848f332e255b7a</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep_1.2.0_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">cc64227ce40902bb44373456363af34499821b95627a713f5552106e50c12413</td></tr>
+              <tr><td class="f"><a href="/download/v1.2.0/Penkeep-1.2.0-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">e728eac5275882e7bcb98ac034b275171e170a22acdd45eef93dbad75c698102</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sums"><a href="/download/v1.2.0/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
+
+        <div class="notes">
+          <div class="notes-h">What was new</div>
+          <p>This is the first release macOS opens <strong>without the "unidentified developer"
+            warning</strong> — no right-clicking, no trip to System Settings. Penkeep is now signed with
+            an Apple Developer ID and notarized by Apple.</p>
+
+          <ul>
+            <li><strong>Touch ID unlocks your encrypted notes.</strong> The switch in Settings →
+              Encryption has been greyed out since the day it appeared, because macOS refuses to put
+              biometric protection on an application it cannot identify. Turn it on and opening an
+              encrypted note asks for your fingerprint instead of your passphrase. Apple Watch and your
+              Mac's password both work as fallbacks. A note you have already opened this session reopens
+              without asking again — Penkeep holds the passphrase for thirty minutes, and <em>Lock
+              Now</em> (⌘L) ends that whenever you want. The passphrase never leaves your Mac and is
+              never synced to iCloud. macOS only.</li>
+            <li><strong>macOS will ask once more for permission to read your folders.</strong> Being
+              signed makes this a new application identity, so the access you granted earlier builds does
+              not carry across. Allow it once and that is the end of it — future updates will not
+              re-ask. Nothing you have saved is affected.</li>
+            <li><strong>Decrypting a note no longer leaves its passphrase behind.</strong> Turning a note
+              back into plain text — or deleting it — used to leave the saved passphrase in your Keychain
+              indefinitely, filed under a note that no longer existed.</li>
+            <li><strong>A folder could disappear from the sidebar without you removing it.</strong> If
+              Penkeep could not open one at startup it quietly dropped it, permanently — and it could not
+              tell "deleted" apart from "macOS has not granted permission yet". The list now only shrinks
+              when you remove a folder yourself.</li>
+            <li><strong>Fixed:</strong> a file that could be dragged into a folder but never back out, a
+              wiki-link to an unreadable file offering to create it, buttons on plain text files that did
+              not apply to them, and an About dialog that now shows the version and links to penkeep.com.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
 
     <details id="v1.1.6">
       <summary>
@@ -242,61 +306,6 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:34px 0 3
         </div>
       </div>
     </details>
-
-    <details id="v1.1.5">
-      <summary>
-        <span class="rel-v">v1.1.5</span>
-        <span class="rel-t">ten themes to write in</span>
-        <span class="rel-d">08/08/2026</span>
-      </summary>
-      <div class="body">
-        <div class="tw">
-          <table>
-            <thead><tr><th>Download</th><th>SHA-256</th></tr></thead>
-            <tbody>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_aarch64.dmg">macOS · Apple Silicon<span class="ext">.dmg</span></a></td><td class="h">337420d772d66eac3c3f379bbf1436b6bad6532d681a4ea5d83dbc0eeb10db67</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_x64.dmg">macOS · Intel<span class="ext">.dmg</span></a></td><td class="h">479b8c144a41df4782e2a307aaf4d27f9ba394de9acec4b71a51428c8b11ce89</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_x64-setup.exe">Windows · installer<span class="ext">.exe</span></a></td><td class="h">5a0883f18dd96ab72721717897249ec2a13a55b1444f29c9b3e5a413d5d5b44c</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_x64_en-US.msi">Windows · package<span class="ext">.msi</span></a></td><td class="h">eba919d1fc04035c74b92e343e1b31db5b0ea71e63898fe18a13f93b6b77c449</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_amd64.deb">Linux · Debian / Ubuntu<span class="ext">.deb</span></a></td><td class="h">1737a1e7507de1c20e1fac5658b44876a88a5f6aaa294089043a507662141f72</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep_1.1.5_amd64.AppImage">Linux · portable<span class="ext">.AppImage</span></a></td><td class="h">58939471ef5befd44bb0c6ed2636338ecaba1ba9af1718f94a6b04e0f1984b6a</td></tr>
-              <tr><td class="f"><a href="/download/v1.1.5/Penkeep-1.1.5-1.x86_64.rpm">Linux · Fedora / RHEL<span class="ext">.rpm</span></a></td><td class="h">35463b6e1f0ea85f826f55f26648ecdb1f73829c8988fe548937b953d4b6ab78</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="sums"><a href="/download/v1.1.5/SHA256SUMS.txt">SHA256SUMS.txt</a></div>
-
-        <div class="notes">
-          <div class="notes-h">What was new</div>
-          <p>Alongside Light and Dark there are now <strong>eight more themes</strong> —
-            <strong>Sepia</strong> and <strong>Linen</strong> for warm paper, <strong>Snow</strong> for a
-            cool low-glare grey, <strong>Nord</strong>, <strong>Graphite</strong>, <strong>True
-            Black</strong> for OLED screens, <strong>Forest</strong>, and <strong>Ember</strong>.</p>
-
-          <ul>
-            <li><strong>A picker that previews the real thing.</strong> Settings → Appearance lists every
-              theme; arrow up and down and the whole app changes as you go, so you are judging the editor
-              itself rather than a thumbnail.</li>
-            <li><strong>Every theme brings its own accent</strong>, and a <strong>Match</strong> chip hands
-              the choice back to the theme — pick a swatch or a custom colour and that wins instead. Nord
-              and Ember carry their own syntax-highlighting colours.</li>
-            <li><strong>Follow system appearance</strong> is a single toggle, and it now notices when you
-              change your Mac's appearance mid-session instead of waiting for the next launch.</li>
-            <li><strong>Preferences no longer disagree between windows.</strong> Changing a setting in one
-              window and then anything in another silently put the first one back, taking your recent-files
-              list with it. Windows now write only what changed, and tell each other.</li>
-            <li><strong>Compare before you choose.</strong> When a file has changed on disk and you have
-              unsaved edits, both prompts now lead with a side-by-side comparison.</li>
-            <li><strong>Fixed:</strong> a flash of white when a window opens (noticeable on the darker
-              themes), code that no longer stood out from the page, unreadable labels on accent-coloured
-              buttons, text selection stuck at teal instead of following your accent, a word count that
-              skipped documents you had not typed in and lost a word at every paragraph, and dates that did
-              not read day-first — including in the files saved beside your notes.</li>
-          </ul>
-        </div>
-      </div>
-    </details>
-
 
   </div>
 

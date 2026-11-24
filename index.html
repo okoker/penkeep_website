@@ -597,10 +597,15 @@ document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*
       const rels=idx.releases||[];
       const rel=rels.find(x=>x.tag===idx.latest)||rels[0];
       if(!rel)return;
+      // Each button takes the newest release that carries its file: a release can skip a
+      // platform (v1.3.0 shipped no Windows build), and those buttons keep the last one that did.
+      const order=[rel].concat(rels.filter(x=>x!==rel));
       map.forEach(m=>{
-        const a=(rel.assets||[]).find(n=>m.match(n));
         const link=document.querySelector('[data-dl="'+m.key+'"]');
-        if(a&&link){link.setAttribute('href','/download/'+rel.tag+'/'+encodeURIComponent(a));link.setAttribute('title',a);}
+        for(const r of order){
+          const a=(r.assets||[]).find(n=>m.match(n));
+          if(a){if(link){link.setAttribute('href','/download/'+r.tag+'/'+encodeURIComponent(a));link.setAttribute('title',a);}break;}
+        }
       });
       const meta=document.getElementById('relMeta');
       if(meta&&rel.tag)meta.innerHTML='Latest: <span style="color:var(--acid)">'+rel.tag+'</span> · Free to try · MIT-licensed core · <a href="/releases.html" style="color:var(--acid)">all releases &amp; checksums</a>';
